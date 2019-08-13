@@ -23,6 +23,15 @@ const config: webpack.Configuration = {
                 ]
             },
             {
+                test: /\.ts(x?)$/,
+                enforce: 'pre',
+                use: [
+                    {
+                        loader: 'tslint-loader'
+                    }
+                ]
+            },
+            {
                 enforce: "pre",
                 test: /\.js$/,
                 loader: "source-map-loader"
