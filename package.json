@@ -2,15 +2,27 @@
   "name": "electron-email-client",
   "version": "0.1.0",
   "private": true,
+  "main": "./dist/main.js",
   "dependencies": {
+    "electron": "6.0.2",
+    "electron-devtools-installer": "^2.2.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production"
+    "start-renderer-dev": "webpack-dev-server --config webpack.renderer.dev.config.ts",
+    "start-main-dev": "webpack --config webpack.main.config.ts && electron ./dist/main.js",
+    "start-dev": "npm run start-renderer-dev",
+    "start": "electron .",
+    "lint": "tslint './src/**/*.{ts,tsx}' --project ./tsconfig.json"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "devDependencies": {
+    "@types/electron-devtools-installer": "^2.2.0",
     "@types/html-webpack-plugin": "^3.2.1",
     "@types/jest": "24.0.17",
     "@types/node": "^12.7.1",
@@ -18,8 +30,11 @@
     "@types/react-dom": "16.8.5",
     "@types/webpack": "^4.32.1",
     "@types/webpack-dev-server": "^3.1.7",
+    "@types/webpack-merge": "^4.1.5",
+    "@types/webpack-node-externals": "^1.6.3",
     "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.3",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
@@ -31,6 +46,8 @@
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

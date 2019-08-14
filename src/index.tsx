@@ -11,4 +11,7 @@ const App: React.FC = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root: HTMLElement = document.createElement('div');
+document.body.appendChild(root);
+
+ReactDOM.render(<App />, root);
