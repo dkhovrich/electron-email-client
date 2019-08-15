@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import './index.css';
 
-const App: React.FC = () => {
+import Application from './containers/App';
+import store from './store';
+
+const Root: React.FC = () => {
   return (
-    <div className="App">
-      <h1>Hello, World!</h1>
-    </div>
+    <Provider store={store}>
+      <Application />
+    </Provider>
   );
 };
 
 const root: HTMLElement = document.createElement('div');
 document.body.appendChild(root);
 
-ReactDOM.render(<App />, root);
+ReactDOM.render(<Root />, root);

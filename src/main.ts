@@ -20,7 +20,7 @@ const createWindow = async (): Promise<void> => {
     }
 
     win = new BrowserWindow({
-        height: 600, width: 800, webPreferences: { nodeIntegration: true },
+        height: 768, width: 1024, webPreferences: { nodeIntegration: true },
     });
 
     if (process.env.NODE_ENV !== 'production') {
