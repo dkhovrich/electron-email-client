@@ -1,23 +1,20 @@
-import React, { useEffect, Dispatch } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 
-import { fetch } from '../actions/emailsActions';
-import { selectEmails } from '../reducers/emailsReducer';
+import { Layout } from 'antd';
+import { Sidebar, EmailList } from '../components';
+
+const { Content } = Layout;
 
 const Application: React.FC = () => {
-    const dispatch: Dispatch<any> = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetch.request());
-    }, [dispatch]);
-
-    const emails: any[] = useSelector(selectEmails);
-    console.table(emails);
-
     return (
-        <div>
-            <h1>Hello, Electron!</h1>
-        </div>
+        <Layout>
+            <Sidebar />
+            <Layout style={{ marginLeft: 200 }}>
+                <Content>
+                    <EmailList />
+                </Content>
+            </Layout>
+        </Layout>
     );
 };
 

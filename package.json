@@ -4,8 +4,10 @@
   "private": true,
   "main": "./dist/main.js",
   "dependencies": {
+    "antd": "^3.21.4",
     "electron": "6.0.2",
     "electron-devtools-installer": "^2.2.4",
+    "lodash": "^4.17.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
@@ -25,6 +27,7 @@
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/html-webpack-plugin": "^3.2.1",
     "@types/jest": "24.0.17",
+    "@types/lodash": "^4.14.136",
     "@types/node": "^12.7.1",
     "@types/react": "16.9.1",
     "@types/react-dom": "16.8.5",
