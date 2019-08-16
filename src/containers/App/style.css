@@ -1,0 +1,3 @@
+.app-content-layout__container {
+    margin-left: var(--sidebar-width);
+}

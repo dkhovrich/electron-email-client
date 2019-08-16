@@ -22,7 +22,12 @@ const initialState: IEmailsState = {
 
 const fetch = {
     request(state: IEmailsState): IEmailsState {
-        return { ...state, fetching: true };
+        return {
+            ...state,
+            byId: {},
+            ids: [],
+            fetching: true,
+        };
     },
     success(state: IEmailsState, action: Action<IEmail[]>): IEmailsState {
         const byId: IEmailById = action.payload.reduce((acc: IEmailById, email: IEmail) => {

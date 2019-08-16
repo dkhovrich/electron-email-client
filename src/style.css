@@ -1,5 +1,14 @@
 @import '~antd/dist/antd.css';
 
+:root {
+  --email-list-container-width: 400px;
+  --sidebar-width: 200px;
+
+  --color-border: #e1e6ed;
+  --color-email-list-background: white;
+  --color-email-date: #848c9b;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,6 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: black;
 }
 
 code {

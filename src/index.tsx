@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import './index.css';
+import './style.css';
 
-import Application from './containers/App';
+import Application from './containers/App/App';
 import store from './store';
 
 const Root: React.FC = () => {

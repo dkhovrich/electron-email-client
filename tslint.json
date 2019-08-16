@@ -35,7 +35,7 @@
             ]
         },
         "jsx-no-multiline-js": false,
-        "jsx-no-lambda": false,
+        "jsx-no-lambda": false
     },
     "jsRules": {
         "max-line-length": {

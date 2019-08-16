@@ -45,7 +45,7 @@ const Sidebar: React.FC = () => {
     }, []);
 
     return (
-        <Sider className="sider-container">
+        <Sider className="sidebar__container">
             <Menu theme="dark" mode="inline" defaultSelectedKeys={defaultSelectedKeys}>
                 {folders.map((folder) => (
                     <Menu.Item key={folder} onClick={onMenuClick}>
