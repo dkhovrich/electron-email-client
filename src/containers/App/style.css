@@ -1,3 +1,12 @@
 .app-content-layout__container {
     margin-left: var(--sidebar-width);
 }
+
+.app-content-layout__content--empty {
+    flex: 1;
+    align-self: center;
+}
+
+.app-content-layout__content {
+    display: flex;
+}

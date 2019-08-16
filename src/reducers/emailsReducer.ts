@@ -62,6 +62,7 @@ function remove(state: IEmailsState, action: Action<string>): IEmailsState {
 
     return {
         ...state,
+        selectedId: state.selectedId === action.payload ? null : state.selectedId,
         byId,
         ids: state.ids.filter((id: string) => id !== action.payload),
     };
