@@ -12,6 +12,10 @@
     background-color: var(--color-email-list-background);
 }
 
+.email-list__item__container__row {
+    width: 100%;
+}
+
 .email-list__item__container__row:not(:last-of-type) {
     margin-bottom: 8px;
 }
@@ -29,6 +33,10 @@
     top: 15px;
     position: absolute;
     left: 4px;
+}
+
+.email-list__item__container--selected {
+    background-color: var(--color-selected-email-background);
 }
 
 .email-list__item__container__from {

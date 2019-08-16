@@ -8,3 +8,4 @@ export const fetch: IAsyncAction<Category, IEmail[], void> = createAsyncAction<C
 export const toggleRead: ActionFunctionAny<Action<string>> = createAction<string>(`${prefix}/TOGGLE_READ`);
 export const remove: ActionFunctionAny<Action<string>> = createAction<string>(`${prefix}/REMOVE`);
 export const reset: ActionFunctionAny<BaseAction> = createAction(`${prefix}/RESET`);
+export const select: ActionFunctionAny<Action<string>> = createAction<string>(`${prefix}/SELECT`);

@@ -8,6 +8,7 @@
   --color-email-list-background: white;
   --color-email-date: #848c9b;
   --color-unread-email-badge: #3b82de;
+  --color-selected-email-background: #f3f6fd;
 }
 
 body {

@@ -1,4 +1,4 @@
-import { handleActions, Action, BaseAction } from 'redux-actions';
+import { handleActions, Action } from 'redux-actions';
 import { createSelector } from 'reselect';
 
 import * as actions from '../actions/emailsActions';
@@ -12,22 +12,19 @@ export interface IEmailsState {
     fetching: boolean;
     byId: IEmailById;
     ids: string[];
+    selectedId: string | null;
 }
 
 const initialState: IEmailsState = {
     fetching: false,
     byId: {},
     ids: [],
+    selectedId: null,
 };
 
 const fetch = {
-    request(state: IEmailsState): IEmailsState {
-        return {
-            ...state,
-            byId: {},
-            ids: [],
-            fetching: true,
-        };
+    request(): IEmailsState {
+        return { ...initialState, fetching: true };
     },
     success(state: IEmailsState, action: Action<IEmail[]>): IEmailsState {
         const byId: IEmailById = action.payload.reduce((acc: IEmailById, email: IEmail) => {
@@ -55,19 +52,30 @@ function toggleRead(state: IEmailsState, action: Action<string>): IEmailsState {
 
     return {
         ...state,
-        [action.payload]: email,
+        byId: { ...state.byId, [action.payload]: email },
     };
 }
 
 function remove(state: IEmailsState, action: Action<string>): IEmailsState {
+    const byId: IEmailById = { ...state.byId };
+    delete byId[action.payload];
+
     return {
         ...state,
-        [action.payload]: undefined,
+        byId,
+        ids: state.ids.filter((id: string) => id !== action.payload),
     };
 }
 
-function reset(state: IEmailsState, action: BaseAction): IEmailsState {
+function reset(): IEmailsState {
     return { ...initialState };
+}
+
+function select(state: IEmailsState, action: Action<string>): IEmailsState {
+    return {
+        ...state,
+        selectedId: action.payload,
+    };
 }
 
 export default handleActions<any>({
@@ -77,6 +85,7 @@ export default handleActions<any>({
     [actions.toggleRead().type]: toggleRead,
     [actions.remove().type]: remove,
     [actions.reset().type]: reset,
+    [actions.select().type]: select,
 }, initialState);
 
 const getBranch = (state: any) => state.emails;
@@ -89,3 +98,12 @@ export const selectEmails = createSelector(
     [selectEmailsById, selectEmailIds],
     (byId: IEmailById, ids: string[]): IEmail[] => ids.map((id) => byId[id]),
 );
+export const selectSelectedEmailId = createSelector(
+    getBranch,
+    (state: IEmailsState): string | null => state.selectedId,
+);
+export const selectSelectedEmail = createSelector(
+    [selectEmailsById, selectSelectedEmailId],
+    (byId: IEmailById, id: string | null): IEmail | null => id ? byId[id] : null,
+);
+
