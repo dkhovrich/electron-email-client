@@ -7,17 +7,9 @@
 .email-list__item__container {
     display: flex;
     flex-direction: column;
-    padding: 8px 16px;
+    padding: 8px 16px 0 16px;
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-email-list-background);
-}
-
-.email-list__item__container__row {
-    width: 100%;
-}
-
-.email-list__item__container__row:not(:last-of-type) {
-    margin-bottom: 8px;
 }
 
 .email-list__item__container--unread {
@@ -26,17 +18,23 @@
 
 .email-list__item__container--unread::after {
     content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
     background-color: var(--color-unread-email-badge);
-    top: 15px;
+    top: 16px;
     position: absolute;
     left: 4px;
 }
 
 .email-list__item__container--selected {
     background-color: var(--color-selected-email-background);
+}
+
+.email-list__item__paragraph__from-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .email-list__item__container__from {

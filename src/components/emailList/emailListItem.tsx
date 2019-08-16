@@ -2,17 +2,19 @@ import React, { useMemo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import classnames from 'classnames';
-import { Row, Col, List } from 'antd';
+import { List, Typography } from 'antd';
 
 import { IEmail } from '../../types/email';
 import { formatDate } from '../../utils/date';
+
+import { select } from '../../actions/emailsActions';
 
 interface IProps {
     email: IEmail;
     isSelected: boolean;
 }
 
-import { select } from '../../actions/emailsActions';
+const { Text, Paragraph } = Typography;
 
 const EmailListItem = ({ email, isSelected }: IProps) => {
     const dispatch: Dispatch = useDispatch();
@@ -31,28 +33,20 @@ const EmailListItem = ({ email, isSelected }: IProps) => {
     return (
         <List.Item className={className}>
             <div onClick={onClick}>
-                <Row justify="space-between" className="email-list__item__container__row">
-                    <Col span={16} className="email-list__item__container_column">
-                        <span className="email-list__item__container__from">
-                            {email.from}
-                        </span>
-                    </Col>
-                    <Col span={8} className="email-list__item__container__date__column">
-                        <span className="email-list__item__container__date">
-                            {dateFormatted}
-                        </span>
-                    </Col>
-                </Row>
-                <Row className="email-list__item__container__row">
-                    <span className="email-list__item__container__subject">
-                        {email.subject}
-                    </span>
-                </Row>
-                <Row className="email-list__item__container__row">
-                    <p className="email-list__item__container__preview">
-                        {email.preview}
-                    </p>
-                </Row>
+                <Paragraph className="email-list__item__paragraph__from-data">
+                    <Text className="email-list__item__container__from">
+                        {email.from}
+                    </Text>
+                    <Text className="email-list__item__container__date">
+                        {dateFormatted}
+                    </Text>
+                </Paragraph>
+                <Paragraph className="email-list__item__container__subject">
+                    {email.subject}
+                </Paragraph>
+                <Paragraph className="email-list__item__container__preview">
+                    {email.preview}
+                </Paragraph>
             </div>
         </List.Item>
     );
