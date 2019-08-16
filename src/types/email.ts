@@ -12,6 +12,11 @@ export interface IEmail {
     isDeleted: boolean;
 }
 
+export interface IToggleRead {
+    id: string;
+    isRead: boolean;
+}
+
 export class Email implements IEmail {
     public static fromStub(stub: any): Email {
         return {

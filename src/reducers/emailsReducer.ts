@@ -2,7 +2,7 @@ import { handleActions, Action } from 'redux-actions';
 import { createSelector } from 'reselect';
 
 import * as actions from '../actions/emailsActions';
-import { IEmail } from '../types/email';
+import { IEmail, IToggleRead } from '../types/email';
 
 interface IEmailById {
     [key: string]: IEmail;
@@ -46,13 +46,14 @@ const fetch = {
     },
 };
 
-function toggleRead(state: IEmailsState, action: Action<string>): IEmailsState {
-    const email = { ...state.byId[action.payload] };
+function toggleRead(state: IEmailsState, action: Action<IToggleRead>): IEmailsState {
+    const { id } = action.payload;
+    const email = { ...state.byId[id] };
     email.isRead = !email.isRead;
 
     return {
         ...state,
-        byId: { ...state.byId, [action.payload]: email },
+        byId: { ...state.byId, [id]: email },
     };
 }
 

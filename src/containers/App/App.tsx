@@ -3,11 +3,15 @@ import { useSelector } from 'react-redux';
 
 import './style.css';
 
-import { Layout, Empty } from 'antd';
+import { Layout, Empty, notification } from 'antd';
 import { Sidebar, EmailList, SelectedEmail } from '../../components';
 
 import { IEmail } from '../../types/email';
 import { selectSelectedEmail } from '../../reducers/emailsReducer';
+
+notification.config({
+    placement: 'bottomRight',
+});
 
 const { Content } = Layout;
 
