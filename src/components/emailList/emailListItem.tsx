@@ -19,7 +19,7 @@ const { Text, Paragraph } = Typography;
 const EmailListItem = ({ email, isSelected }: IProps) => {
     const dispatch: Dispatch = useDispatch();
 
-    const dateFormatted: string = useMemo(() => formatDate(email.date as Date), [email.date]);
+    const dateFormatted: string = useMemo(() => formatDate(email.date as Date, 'LLL d t'), [email.date]);
 
     const className: string = classnames('email-list__item__container', {
         'email-list__item__container--unread': !email.isRead,

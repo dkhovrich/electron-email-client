@@ -1,3 +1,15 @@
 .selected-email__page-header {
-    flex: 1;
+    background-color: var(--color-bg-gray);
+}
+
+.selected-email__content {
+    padding: 16px 24px;
+    background-color: var(--color-bg-gray);
+}
+
+.selected-email__content__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-white);
 }
