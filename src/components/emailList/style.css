@@ -7,11 +7,28 @@
 .email-list__item__container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 0 16px;
-    height: 144px;
+    padding: 8px 16px;
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-email-list-background);
+}
+
+.email-list__item__container__row:not(:last-of-type) {
+    margin-bottom: 8px;
+}
+
+.email-list__item__container--unread {
+    position: relative;
+}
+
+.email-list__item__container--unread::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--color-unread-email-badge);
+    top: 15px;
+    position: absolute;
+    left: 4px;
 }
 
 .email-list__item__container__from {

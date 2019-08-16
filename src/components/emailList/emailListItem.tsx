@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { DateTime } from 'luxon';
-
+import classnames from 'classnames';
 import { Row, Col } from 'antd';
 
 import { IEmail } from '../../types/email';
@@ -13,10 +13,13 @@ const formatDate = (date: Date): string => DateTime.fromJSDate(date).toFormat('L
 
 const EmailListItem = ({ email }: IProps) => {
     const dateFormatted: string = useMemo(() => formatDate(email.date as Date), [email.date]);
+    const className: string = classnames('email-list__item__container', {
+        'email-list__item__container--unread': !email.isRead,
+    });
 
     return (
-        <div className="email-list__item__container">
-            <Row justify="space-between">
+        <div className={className}>
+            <Row justify="space-between" className="email-list__item__container__row">
                 <Col span={16} className="email-list__item__container_column">
                     <span className="email-list__item__container__from">
                         {email.from}
@@ -28,12 +31,12 @@ const EmailListItem = ({ email }: IProps) => {
                     </span>
                 </Col>
             </Row>
-            <Row>
+            <Row className="email-list__item__container__row">
                 <span className="email-list__item__container__subject">
                     {email.subject}
                 </span>
             </Row>
-            <Row>
+            <Row className="email-list__item__container__row">
                 <p className="email-list__item__container__preview">
                     {email.preview}
                 </p>
