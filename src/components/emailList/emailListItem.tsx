@@ -34,7 +34,7 @@ const EmailListItem = ({ email, isSelected }: IProps) => {
         <List.Item className={className}>
             <div onClick={onClick}>
                 <Paragraph className="email-list__item__paragraph__from-data">
-                    <Text className="email-list__item__container__from">
+                    <Text ellipsis={true} className="email-list__item__container__from">
                         {email.from}
                     </Text>
                     <Text className="email-list__item__container__date">

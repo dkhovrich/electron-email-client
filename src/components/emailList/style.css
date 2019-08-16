@@ -38,14 +38,9 @@
 }
 
 .email-list__item__container__from {
+    max-width: 256px;
     font-weight: 800;
     font-size: 16px;
-}
-
-.email-list__item__container_column {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .email-list__item__container__date__column {
