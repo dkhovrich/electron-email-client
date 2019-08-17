@@ -6,6 +6,7 @@
     ],
     "rulesDirectory": [],
     "rules": {
+        "no-submodule-imports": false,
         "quotemark": [
             true,
             "single",
