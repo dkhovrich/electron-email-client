@@ -11,5 +11,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 58px;
+    margin-bottom: 32px;
+    padding: 0 16px;
+    border: 1px solid var(--color-border);
     background-color: var(--color-white);
+}
+
+.selected-email__content__header__from {
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.selected-email__content__header__date {
+    color: var(--color-email-date);
 }
