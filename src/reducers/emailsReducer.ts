@@ -1,8 +1,19 @@
-import { handleActions, Action } from 'redux-actions';
 import { createSelector } from 'reselect';
+import { createReducer } from './utils';
 
-import * as actions from '../actions/emailsActions';
-import { IEmail, IToggleRead } from '../types/email';
+import {
+    FETCH_REQUEST,
+    FETCH_SUCCESS,
+    FETCH_ERROR,
+    SELECT,
+    REMOVE,
+    TOGGLE_READ,
+    IFetchSuccessAction,
+    ISelectAction,
+    IRemoveAction,
+    IToggleReadAction,
+} from '../actions/emailsActions';
+import { IEmail } from '../types/email';
 
 interface IEmailById {
     [key: string]: IEmail;
@@ -26,7 +37,7 @@ const fetch = {
     request(): IEmailsState {
         return { ...initialState, fetching: true };
     },
-    success(state: IEmailsState, action: Action<IEmail[]>): IEmailsState {
+    success(state: IEmailsState, action: IFetchSuccessAction): IEmailsState {
         const byId: IEmailById = action.payload.reduce((acc: IEmailById, email: IEmail) => {
             const { id } = email;
             return { ...acc, [id]: email };
@@ -46,18 +57,14 @@ const fetch = {
     },
 };
 
-function toggleRead(state: IEmailsState, action: Action<IToggleRead>): IEmailsState {
-    const { id } = action.payload;
-    const email = { ...state.byId[id] };
-    email.isRead = !email.isRead;
-
+function select(state: IEmailsState, action: ISelectAction): IEmailsState {
     return {
         ...state,
-        byId: { ...state.byId, [id]: email },
+        selectedId: action.payload,
     };
 }
 
-function remove(state: IEmailsState, action: Action<string>): IEmailsState {
+function remove(state: IEmailsState, action: IRemoveAction): IEmailsState {
     const byId: IEmailById = { ...state.byId };
     delete byId[action.payload];
 
@@ -69,26 +76,24 @@ function remove(state: IEmailsState, action: Action<string>): IEmailsState {
     };
 }
 
-function reset(): IEmailsState {
-    return { ...initialState };
-}
+function toggleRead(state: IEmailsState, action: IToggleReadAction): IEmailsState {
+    const email = { ...state.byId[action.payload] };
+    email.isRead = !email.isRead;
 
-function select(state: IEmailsState, action: Action<string>): IEmailsState {
     return {
         ...state,
-        selectedId: action.payload,
+        byId: { ...state.byId, [action.payload]: email },
     };
 }
 
-export default handleActions<any>({
-    [actions.fetch.request().type]: fetch.request,
-    [actions.fetch.success().type]: fetch.success,
-    [actions.fetch.error().type]: fetch.error,
-    [actions.toggleRead().type]: toggleRead,
-    [actions.remove().type]: remove,
-    [actions.reset().type]: reset,
-    [actions.select().type]: select,
-}, initialState);
+export default createReducer<IEmailsState>(initialState, {
+    [FETCH_REQUEST]: fetch.request,
+    [FETCH_SUCCESS]: fetch.success,
+    [FETCH_ERROR]: fetch.error,
+    [SELECT]: select,
+    [REMOVE]: remove,
+    [TOGGLE_READ]: toggleRead,
+});
 
 const getBranch = (state: any) => state.emails;
 

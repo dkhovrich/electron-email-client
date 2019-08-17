@@ -5,9 +5,9 @@ import { Layout, PageHeader, Button, Modal, Typography } from 'antd';
 
 import './style.css';
 
-import { IEmail, IToggleRead } from '../../types/email';
+import { IEmail } from '../../types/email';
 import { formatDate } from '../../utils/date';
-import { select, toggleRead, remove } from '../../actions/emailsActions';
+import { select, remove, toggleRead } from '../../actions/emailsActions';
 
 interface IProps {
     email: IEmail;
@@ -27,12 +27,7 @@ const SelectedEmail = ({ email }: IProps) => {
     }, [dispatch]);
 
     const onToggleRead = useCallback(() => {
-        const data: IToggleRead = {
-            id: email.id,
-            isRead: email.isRead,
-        };
-
-        dispatch(toggleRead(data));
+        dispatch(toggleRead(email.id, email.isRead));
     }, [dispatch, email.id, email.isRead]);
 
     const onRemove = useCallback(() => {
