@@ -7,6 +7,8 @@ import installExtension, {
 import path from 'path';
 import url from 'url';
 
+import config from './config';
+
 let win: BrowserWindow | null;
 
 const installExtensions = async (): Promise<void | string[]> => {
@@ -20,7 +22,9 @@ const createWindow = async (): Promise<void> => {
     }
 
     win = new BrowserWindow({
-        height: 768, width: 1024, webPreferences: { nodeIntegration: true },
+        height: config.electron.height,
+        width: config.electron.width,
+        webPreferences: { nodeIntegration: true },
     });
 
     if (process.env.NODE_ENV !== 'production') {

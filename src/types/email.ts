@@ -1,8 +1,10 @@
 import truncate from 'lodash/truncate';
 
+type Timestamp = firebase.firestore.Timestamp;
+
 export interface IEmail {
     id: string;
-    date: Date | string;
+    date: Date | Timestamp;
     from: string;
     subject: string;
     preview: string;
@@ -13,16 +15,16 @@ export interface IEmail {
 }
 
 export class Email implements IEmail {
-    public static fromStub(stub: any): Email {
+    public static fromFirebase(email: IEmail): Email {
         return {
-            ...stub,
-            date: new Date(stub.date),
-            preview: truncate(stub.content, { length: 100 }),
+            ...email,
+            date: (email.date as Timestamp).toDate(),
+            preview: truncate(email.content, { length: 100 }),
         };
     }
 
     public id: string;
-    public date: Date | string;
+    public date: Date | Timestamp;
     public from: string;
     public subject: string;
     public preview: string;

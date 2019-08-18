@@ -1,5 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { notification } from 'antd';
+import client from '../firebase/client';
 
 import {
     FETCH_REQUEST,
@@ -10,12 +11,11 @@ import {
     fetch as fetchAction,
 } from '../actions/emailsActions';
 import { IEmail } from '../types/email';
-import { fetchEmailsStub } from '../stubs/email';
 
 const fetch = {
     * request(action: IFetchRequestAction) {
-        const response: IEmail[] = yield call(fetchEmailsStub, action.payload);
-        yield put(fetchAction.success(response));
+        const emails: IEmail[] = yield call(client.getEmails.bind(client), action.payload);
+        yield put(fetchAction.success(emails));
     },
 };
 
