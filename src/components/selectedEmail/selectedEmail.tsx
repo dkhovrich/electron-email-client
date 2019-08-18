@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Layout, PageHeader, Button, Modal, Typography } from 'antd';
+import { Layout, Button, Modal, Typography, Row } from 'antd';
 
 import './style.css';
 
@@ -43,23 +43,20 @@ const SelectedEmail = ({ email }: IProps) => {
     }, [dispatch, email.id]);
 
     return (
-        <Layout>
-            <PageHeader
-                title={email.subject}
-                className="selected-email__page-header"
-                extra={[
-                    <Button key="1" onClick={onToggleRead}>
-                        {email.isRead ? 'Unread' : 'Read'}
-                    </Button>,
-                    <Button key="2" type="danger" onClick={onRemove}>
-                        Remove
-                    </Button>,
-                    <Button key="3" type="primary" onClick={onClose}>
-                        Close
-                    </Button>,
-                ]}
-            />
+        <Layout className="selected-email__layout">
+            <Row className="selected-email__controls__row">
+                <Button key="1" onClick={onToggleRead}>
+                    {email.isRead ? 'Unread' : 'Read'}
+                </Button>
+                <Button key="2" type="danger" onClick={onRemove}>
+                    Remove
+                </Button>
+                <Button key="3" type="primary" onClick={onClose}>
+                    Close
+                </Button>
+            </Row>
             <Content className="selected-email__content">
+                <Text className="selected-email__content__title">{email.subject}</Text>
                 <div className="selected-email__content__header">
                     <Text className="selected-email__content__header__from">
                         {email.from}

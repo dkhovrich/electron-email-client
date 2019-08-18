@@ -3,6 +3,7 @@
 :root {
   --email-list-container-width: 400px;
   --sidebar-width: 200px;
+  --selected-email-layout-min-width: 350px;
 
   --color-border: #e1e6ed;
   --color-bg-gray: #f4f4f4;

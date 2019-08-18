@@ -1,10 +1,27 @@
-.selected-email__page-header {
+.selected-email__layout {
+    flex-basis: var(--selected-email-layout-min-width);
+    flex-shrink: 0;
+}
+
+.selected-email__controls__row {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
     background-color: var(--color-bg-gray);
 }
 
+.selected-email__controls__row button:not(:last-of-type) {
+    margin-right: 16px;
+}
+
 .selected-email__content {
-    padding: 16px 24px;
+    padding: 0 16px 16px;
     background-color: var(--color-bg-gray);
+}
+
+.selected-email__content__title {
+    font-weight: 800;
+    font-size: 16px;
 }
 
 .selected-email__content__header {
@@ -12,7 +29,7 @@
     justify-content: space-between;
     align-items: center;
     height: 58px;
-    margin-bottom: 32px;
+    margin: 32px 0;
     padding: 0 16px;
     border: 1px solid var(--color-border);
     background-color: var(--color-white);
