@@ -11,7 +11,7 @@ class FireBaseClient {
     private readonly dataBase: Firestore;
 
     constructor() {
-        this.initialize();
+        firebase.initializeApp(config.firebase);
         this.dataBase = firebase.firestore();
     }
 
@@ -26,10 +26,6 @@ class FireBaseClient {
             console.error('Error getting emails', err);
             return [];
         }
-    }
-
-    private initialize(): void {
-        firebase.initializeApp(config.firebase);
     }
 }
 
