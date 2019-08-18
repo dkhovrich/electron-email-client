@@ -29,11 +29,7 @@ class FireBaseClient {
     }
 
     private initialize(): void {
-        firebase.initializeApp({
-            apiKey: config.firebase.apiKey,
-            authDomain: config.firebase.authDomain,
-            projectId: config.firebase.projectId,
-        });
+        firebase.initializeApp(config.firebase);
     }
 }
 
