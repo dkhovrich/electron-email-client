@@ -37,12 +37,6 @@ const createWindow = async (): Promise<void> => {
         }));
     }
 
-    if (process.env.NODE_ENV !== 'production') {
-        win.webContents.once('dom-ready', () => {
-            win!.webContents.openDevTools();
-        });
-    }
-
     win.on('closed', () => {
         win = null;
     });
