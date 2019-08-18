@@ -45,13 +45,13 @@ const SelectedEmail = ({ email }: IProps) => {
     return (
         <Layout className="selected-email__layout">
             <Row className="selected-email__controls__row">
-                <Button key="1" onClick={onToggleRead}>
+                <Button onClick={onToggleRead}>
                     {email.isRead ? 'Unread' : 'Read'}
                 </Button>
-                <Button key="2" type="danger" onClick={onRemove}>
+                <Button type="danger" onClick={onRemove}>
                     Remove
                 </Button>
-                <Button key="3" type="primary" onClick={onClose}>
+                <Button type="primary" onClick={onClose}>
                     Close
                 </Button>
             </Row>
